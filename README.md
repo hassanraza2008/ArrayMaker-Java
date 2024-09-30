@@ -28,27 +28,20 @@ ArrayMaker-Java is a simple utility program that creates an array of sequential 
 
 ### Usage
 
-1. **Compile the program:**
+1. **Compile the program with:**
    ```sh
    javac ArrayMaker.java
    ```
 
-2. **Run the program:**
+2. **Run the program with CLI:**
    ```sh
-   java ArrayMaker
+   java ArrayMaker <file-name> <number-of-elements>
    ```
-
-3. **Follow the prompts:**
-   - Enter the name of the file (with `.txt` extension).
-   - Enter the number of elements you want to write to the file.
 
 ### Example
 
 ```sh
-Welcome to array maker for Java!
-Enter the name of the file (with .txt extension): output.txt
-Enter how many numbers you want to write in the file: 10
-Array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+java ArrayMaker output.txt 10
 ```
 
 The program will create a file named `output.txt` with the following content:
