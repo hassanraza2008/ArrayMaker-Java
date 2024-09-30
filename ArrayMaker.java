@@ -2,50 +2,89 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * ArrayMaker is a utility program that creates an array of sequential numbers
  * and writes them to a specified file.
  */
 public class ArrayMaker {
+    // Logger for logging messages and errors
+    private static final Logger logger = Logger.getLogger(ArrayMaker.class.getName());
+
     public static void main(String[] args) {
-        // Try-with-resources to ensure Scanner is closed automatically
-        try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("Welcome to array maker for Java!");
+        // Check if the correct number of command-line arguments are provided
+        if (args.length < 2) {
+            logger.severe("Usage: java ArrayMaker <file-name> <number-of-elements>");
+            return;
+        }
 
-            // Prompt the user to enter the file name
-            System.out.print("Enter the name of the file (with .txt extension): ");
-            String fileName = sc.nextLine();
+        // Get the file name and number of elements from the command-line arguments
+        String fileName = args[0];
+        int n;
+        try {
+            n = Integer.parseInt(args[1]);
+        } catch (NumberFormatException e) {
+            logger.severe("The number of elements must be an integer.");
+            return;
+        }
 
-            // Prompt the user to enter the number of elements in the array
-            System.out.print("Enter how many numbers you want to write in the file: ");
-            int n = sc.nextInt();
+        // Create an array of sequential numbers
+        int[] arr = createArray(n);
 
-            // Initialize the array with the specified number of elements
-            int[] arr = new int[n];
-            for (int i = 0; i < n; i++) {
-                arr[i] = i + 1; // Populate the array with sequential numbers
+        // Print the array to the console
+        printArray(arr);
+
+        // Write the array to the specified file
+        writeArrayToFile(arr, fileName);
+    }
+
+    /**
+     * Creates an array of sequential numbers from 1 to n.
+     *
+     * @param n the number of elements in the array
+     * @return the created array
+     */
+    private static int[] createArray(int n) {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = i + 1;
+        }
+        return arr;
+    }
+
+    /**
+     * Prints the array to the console.
+     *
+     * @param arr the array to print
+     */
+    private static void printArray(int[] arr) {
+        StringBuilder sb = new StringBuilder("Array: [");
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]);
+            if (i < arr.length - 1) {
+                sb.append(", ");
             }
+        }
+        sb.append("]");
+        logger.info(sb.toString());
+    }
 
-            // Print the array to the console for verification
-            System.out.print("Array: [");
-            for (int i = 0; i < n; i++) {
-                System.out.print(arr[i]);
-                if (i < n - 1) {
-                    System.out.print(", ");
-                }
+    /**
+     * Writes the array to a specified file, each number on a new line.
+     *
+     * @param arr the array to write
+     * @param fileName the name of the file to write to
+     */
+    private static void writeArrayToFile(int[] arr, String fileName) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
+            for (int i : arr) {
+                pw.println(i);
             }
-            System.out.println("]");
-
-            // Write the array to the specified file, each number on a new line
-            try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
-                for (int i = 0; i < n; i++) {
-                    pw.println(arr[i]);
-                }
-            } catch (IOException e) {
-                // Handle any IO exceptions that occur
-                System.err.println("An error occurred while writing to the file: " + e.getMessage());
-            }
+            logger.info("Array written to file: " + fileName);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "An error occurred while writing to the file: " + e.getMessage(), e);
         }
     }
 }
