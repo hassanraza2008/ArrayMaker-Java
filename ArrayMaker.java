@@ -18,15 +18,15 @@ public class ArrayMaker {
             int n = sc.nextInt();
 
             // Initialize the array with the specified number of elements
-            int[] array = new int[n];
+            int[] arr = new int[n];
             for (int i = 0; i < n; i++) {
-                array[i] = i + 1; // Populate the array with sequential numbers
+                arr[i] = i + 1; // Populate the array with sequential numbers
             }
 
             // Print the array to the console for verification
             System.out.print("Array: [");
             for (int i = 0; i < n; i++) {
-                System.out.print(array[i]);
+                System.out.print(arr[i]);
                 if (i < n - 1) {
                     System.out.print(", ");
                 }
@@ -34,9 +34,9 @@ public class ArrayMaker {
             System.out.println("]");
 
             // Write the array to the specified file, each number on a new line
-            try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
                 for (int i = 0; i < n; i++) {
-                    writer.println(array[i]);
+                    pw.println(arr[i]);
                 }
             } catch (IOException e) {
                 // Handle any IO exceptions that occur
