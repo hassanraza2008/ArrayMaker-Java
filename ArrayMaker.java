@@ -40,7 +40,7 @@ public class ArrayMaker {
                 }
             } catch (IOException e) {
                 // Handle any IO exceptions that occur
-                e.printStackTrace();
+                System.err.println("An error occurred while writing to the file: " + e.getMessage());
             }
         }
     }
