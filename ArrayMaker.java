@@ -3,6 +3,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * ArrayMaker is a utility program that creates an array of sequential numbers
+ * and writes them to a specified file.
+ */
 public class ArrayMaker {
     public static void main(String[] args) {
         // Try-with-resources to ensure Scanner is closed automatically
