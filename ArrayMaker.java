@@ -21,7 +21,7 @@ public class ArrayMaker {
         }
 
         // Get the file name and number of elements from the command-line arguments
-        String fileName = args[0];
+        String outputFileName = args[0];
         int n;
         try {
             n = Integer.parseInt(args[1]);
@@ -37,7 +37,7 @@ public class ArrayMaker {
         printArray(arr);
 
         // Write the array to the specified file
-        writeArrayToFile(arr, fileName);
+        writeArrayToFile(arr, outputFileName);
     }
 
     /**
@@ -75,14 +75,14 @@ public class ArrayMaker {
      * Writes the array to a specified file, each number on a new line.
      *
      * @param arr the array to write
-     * @param fileName the name of the file to write to
+     * @param outputFileName the name of the file to write to
      */
-    private static void writeArrayToFile(int[] arr, String fileName) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
+    private static void writeArrayToFile(int[] arr, String outputFileName) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(outputFileName))) {
             for (int i : arr) {
                 pw.println(i);
             }
-            logger.info("Array written to file: " + fileName);
+            logger.info("Array written to file: " + outputFileName);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An error occurred while writing to the file: " + e.getMessage(), e);
         }
