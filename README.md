@@ -12,7 +12,7 @@ ArrayMaker-Java is a simple utility program that creates an array of sequential 
 
 ### Prerequisites
 
-- Java Development Kit (JDK) installed on your machine.
+- Java or Java Development Kit (JDK) installed on your machine.
 - A text editor or IDE (e.g., VS Code, IntelliJ IDEA).
 
 ### Installation
